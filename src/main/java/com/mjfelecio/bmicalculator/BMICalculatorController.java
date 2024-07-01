@@ -1,9 +1,9 @@
-package com.kirbysmashyeet.bmicalculator;
+package com.mjfelecio.bmicalculator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class BMICalculatorController {
     @FXML
     private Label welcomeText;
 

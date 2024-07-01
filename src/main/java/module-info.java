@@ -1,8 +1,8 @@
-module com.kirbysmashyeet.bmicalculator {
+module com.mjfelecio.bmicalculator {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.kirbysmashyeet.bmicalculator to javafx.fxml;
-    exports com.kirbysmashyeet.bmicalculator;
+    opens com.mjfelecio.bmicalculator to javafx.fxml;
+    exports com.mjfelecio.bmicalculator;
 }

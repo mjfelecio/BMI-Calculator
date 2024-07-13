@@ -9,6 +9,9 @@ public class BMI {
         this.weight = 0;
     }
 
+    // US Units: pounds / inches
+    // Metric Units: centimeters // kg
+
     public void calculateBMI(double weight, double height) {
     }
 }

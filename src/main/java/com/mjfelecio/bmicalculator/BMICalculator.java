@@ -11,7 +11,7 @@ public class BMICalculator extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BMICalculator.class.getResource("bmi.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("BMI Calculator");
         stage.setScene(scene);
         stage.show();

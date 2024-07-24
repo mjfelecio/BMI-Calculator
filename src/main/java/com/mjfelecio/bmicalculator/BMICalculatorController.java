@@ -26,6 +26,7 @@ public class BMICalculatorController {
         metricUnit.setToggleGroup(unitGroup);
         imperialUnit.setToggleGroup(unitGroup);
         getUnitType();
+        unitGroup.selectToggle(metricUnit);
     }
 
 

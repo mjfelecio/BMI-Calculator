@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -29,7 +30,7 @@
       <TextField fx:id="weightField" alignment="CENTER" prefWidth="80.0" promptText="Weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
       <VBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
-         <RadioButton mnemonicParsing="false" fx:id="metricUnit" text="Metric Unit" toggleGroup="$unitGroup">
+         <RadioButton fx:id="metricUnit" mnemonicParsing="false" text="Metric Unit" toggleGroup="$unitGroup">
             <toggleGroup>
                <ToggleGroup fx:id="unitGroup" />
             </toggleGroup>
@@ -37,7 +38,7 @@
                <Insets top="5.0" />
             </VBox.margin>
          </RadioButton>
-         <RadioButton mnemonicParsing="false" fx:id="imperialUnit" text="Imperial Unit" toggleGroup="$unitGroup">
+         <RadioButton fx:id="imperialUnit" mnemonicParsing="false" text="Imperial Unit" toggleGroup="$unitGroup">
             <VBox.margin>
                <Insets top="5.0" />
             </VBox.margin>
@@ -53,4 +54,5 @@
          <RowConstraints />
       </rowConstraints>
    </GridPane>
+   <Button fx:id="calculateBMIButton" onAction="#calculateBMI" mnemonicParsing="false" prefWidth="120.0" prefHeight="30" text="Calculate BMI" />
 </VBox>

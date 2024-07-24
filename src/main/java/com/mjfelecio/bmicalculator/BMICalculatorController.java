@@ -16,11 +16,11 @@ public class BMICalculatorController {
     private RadioButton metricUnit;
     @FXML
     private RadioButton imperialUnit;
+    @FXML
+    private Button calculateBMIButton;
 
-    private String unit;
-
-    // Imperial Units: pounds / inches
-    // Metric Units: centimeters // kg
+    private String unitUsed;
+    
     @FXML
     public void initialize() {
         metricUnit.setToggleGroup(unitGroup);
@@ -33,23 +33,27 @@ public class BMICalculatorController {
     private void getUnitType() {
         unitGroup.selectedToggleProperty().addListener((ov, toggle, selectedToggle) -> {
             if (selectedToggle != null) {
-                unit = ((ToggleButton) selectedToggle).getText();
+                unitUsed = ((ToggleButton) selectedToggle).getText();
                 setUnit();
             }
         });
     }
 
     private void setUnit() {
-        if (unit.equals("Metric Unit")) {
+        if (unitUsed.equals("Metric Unit")) {
             heightField.setPromptText("cm");
             weightField.setPromptText("kg");
         }
-        else if (unit.equals("Imperial Unit")) {
+        else if (unitUsed.equals("Imperial Unit")) {
             heightField.setPromptText("in");
             weightField.setPromptText("lbs");
         }
     }
 
+    @FXML
+    private void calculateBMI() {
+        calculateBMIButton.setOnAction(e -> System.out.println("Calculate it"));
+    }
 
     @FXML
     private void getHeight() {
@@ -58,11 +62,6 @@ public class BMICalculatorController {
 
     @FXML
     private void getWeight() {
-
-    }
-
-    @FXML
-    private void getUnit() {
 
     }
 

@@ -19,14 +19,14 @@ public class BMI {
         this.weightInKG = weight;
     }
 
-    public double getBMI() {
-        return BMI;
-    }
-
     public void calculateBMI() {
         double meterSquared = this.heightInM * this.heightInM;
         double kilogram = this.weightInKG;
 
         this.BMI = kilogram / meterSquared;
+    }
+
+    public double getBMI() {
+        return BMI;
     }
 }

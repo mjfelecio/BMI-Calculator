@@ -8,75 +8,83 @@ import javafx.util.converter.DoubleStringConverter;
 import java.util.function.UnaryOperator;
 
 public class BMICalculatorController {
+
+    BMI bmiCalculator;
+
     @FXML
     private Label BMIDisplay;
     @FXML
     private TextField heightField;
     @FXML
     private TextField weightField;
-
-
-    private String unitUsed;
     @FXML
     private ToggleGroup unitGroup;
     @FXML
     private RadioButton metricUnit;
     @FXML
     private RadioButton imperialUnit;
-
-
     @FXML
     private Button calculateBMIButton;
 
+    private String selectedUnit;
+    private double meters;
+    private double kilograms;
 
-    
-    @FXML
     public void initialize() {
-        metricUnit.setToggleGroup(unitGroup);
-        imperialUnit.setToggleGroup(unitGroup);
-        getUnitType();
-        unitGroup.selectToggle(metricUnit);
-
+        bmiCalculator = new BMI();
+        setupToggleButtons();
         setupInputFilter(heightField);
         setupInputFilter(weightField);
+
+        // Sets metric as default unit
+        unitGroup.selectToggle(metricUnit);
+        selectedUnit = "metricUnit";
     }
 
-    private void getUnitType() {
-        unitGroup.selectedToggleProperty().addListener((ov, toggle, selectedToggle) -> {
+
+
+    @FXML
+    private void calculateBMI() {
+        convertInputToMeterAndKG();
+
+        bmiCalculator.setHeight(meters);
+        bmiCalculator.setWeight(kilograms);
+        bmiCalculator.calculateBMI();
+        updateBMIDisplay();
+    }
+
+
+    private void updateBMIDisplay() {
+        String text = String.valueOf(bmiCalculator.getBMI());
+
+        BMIDisplay.setText(text);
+        System.out.println("Did it work?");
+        System.out.println("Here is the bmi: " + text);
+    }
+
+    private void setupToggleButtons() {
+        metricUnit.setToggleGroup(unitGroup);
+        imperialUnit.setToggleGroup(unitGroup);
+
+        unitGroup.selectedToggleProperty().addListener((_, _, selectedToggle) -> {
             if (selectedToggle != null) {
-                unitUsed = ((ToggleButton) selectedToggle).getText();
-                setUnit();
+                String unitUsed = ((ToggleButton)selectedToggle).getText();
+                setUnit(unitUsed);
             }
         });
     }
 
-    private void setUnit() {
-        if (unitUsed.equals("Metric Unit")) {
+    private void setUnit(String unit) {
+        if (unit.equals("Metric Unit")) {
             heightField.setPromptText("cm");
             weightField.setPromptText("kg");
+            selectedUnit = "Metric Unit";
         }
-        else if (unitUsed.equals("Imperial Unit")) {
+        else if (unit.equals("Imperial Unit")) {
             heightField.setPromptText("in");
             weightField.setPromptText("lbs");
+            selectedUnit = "Imperial Unit";
         }
-    }
-
-    @FXML
-    private void calculateBMI() {
-        calculateBMIButton.setOnAction(e -> {
-            double height = getHeight();
-            double weight = getWeight();
-
-
-        });
-    }
-
-    private double getHeight() {
-        return Double.parseDouble(heightField.getText());
-    }
-
-    private double getWeight() {
-        return Double.parseDouble(weightField.getText());
     }
 
     private void setupInputFilter(TextField textField) {
@@ -99,14 +107,20 @@ public class BMICalculatorController {
         textField.setTextFormatter(textFormatter);
     }
 
+    private void convertInputToMeterAndKG() {
+        double height = Double.parseDouble(heightField.getText());
+        double weight = Double.parseDouble(weightField.getText());
 
-    @FXML
-    private void displayController() {
+        if (selectedUnit.equals("metricUnit")) {
+            meters = height/100;
+            kilograms = weight;
 
-    }
+        } else if (selectedUnit.equals("imperialUnit")) {
+            double inches = height;
+            meters = inches * 0.0254;
 
-    @FXML
-    private void displayExtraInfo() {
-
+            double pounds = weight;
+            kilograms = pounds * 0.45359237;
+        }
     }
 }

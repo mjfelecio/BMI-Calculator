@@ -23,8 +23,6 @@ public class BMICalculatorController {
     private RadioButton metricUnit;
     @FXML
     private RadioButton imperialUnit;
-    @FXML
-    private Button calculateBMIButton;
 
     private String selectedUnit;
     private double meters;
@@ -38,9 +36,8 @@ public class BMICalculatorController {
 
         // Sets metric as default unit
         unitGroup.selectToggle(metricUnit);
-        selectedUnit = "metricUnit";
+        selectedUnit = "Metric Unit";
     }
-
 
 
     @FXML
@@ -108,11 +105,11 @@ public class BMICalculatorController {
         double height = Double.parseDouble(heightField.getText());
         double weight = Double.parseDouble(weightField.getText());
 
-        if (selectedUnit.equals("metricUnit")) {
+        if (selectedUnit.equals("Metric Unit")) {
             meters = height/100;
             kilograms = weight;
 
-        } else if (selectedUnit.equals("imperialUnit")) {
+        } else if (selectedUnit.equals("Imperial Unit")) {
             double inches = height;
             meters = inches * 0.0254;
 

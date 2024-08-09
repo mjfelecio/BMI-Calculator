@@ -54,5 +54,5 @@
          <RowConstraints />
       </rowConstraints>
    </GridPane>
-   <Button fx:id="calculateBMIButton" onAction="#calculateBMI" mnemonicParsing="false" prefWidth="120.0" prefHeight="30" text="Calculate BMI" />
+   <Button onAction="#calculateBMI" mnemonicParsing="false" prefWidth="120.0" prefHeight="30" text="Calculate BMI" />
 </VBox>

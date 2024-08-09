@@ -26,7 +26,7 @@ public class BMI {
         this.BMI = kilogram / meterSquared;
     }
 
-    public double getBMI() {
-        return BMI;
+    public String getBMI() {
+        return String.valueOf(Math.round(BMI * 10)/10.0);
     }
 }

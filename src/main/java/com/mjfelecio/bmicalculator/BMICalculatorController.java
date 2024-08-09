@@ -55,11 +55,8 @@ public class BMICalculatorController {
 
 
     private void updateBMIDisplay() {
-        String text = String.valueOf(bmiCalculator.getBMI());
-
-        BMIDisplay.setText(text);
-        System.out.println("Did it work?");
-        System.out.println("Here is the bmi: " + text);
+        String bmi = bmiCalculator.getBMI();
+        BMIDisplay.setText(bmi);
     }
 
     private void setupToggleButtons() {

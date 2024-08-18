@@ -19,14 +19,29 @@ public class BMI {
         this.weightInKG = weight;
     }
 
+    public String getBMI() {
+        return String.valueOf(Math.round(BMI * 10)/10.0);
+    }
+
+    public String getBMICategory() {
+        if (this.BMI < 18.5) {
+            return "Underweight";
+        }
+        else if (this.BMI < 25) {
+            return "Normal";
+        }
+        else if (this.BMI < 30) {
+            return "Overweight";
+        }
+        else {
+            return "Obese";
+        }
+    }
+
     public void calculateBMI() {
         double meterSquared = this.heightInM * this.heightInM;
         double kilogram = this.weightInKG;
 
         this.BMI = kilogram / meterSquared;
-    }
-
-    public String getBMI() {
-        return String.valueOf(Math.round(BMI * 10)/10.0);
     }
 }

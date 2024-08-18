@@ -39,7 +39,6 @@ public class BMICalculatorController {
         selectedUnit = "Metric Unit";
     }
 
-
     @FXML
     private void calculateBMI() {
         convertInputToMeterAndKG();
@@ -50,10 +49,10 @@ public class BMICalculatorController {
         updateBMIDisplay();
     }
 
-
     private void updateBMIDisplay() {
         String bmi = bmiCalculator.getBMI();
-        BMIDisplay.setText(bmi);
+        String bmiCategory = bmiCalculator.getBMICategory();
+        BMIDisplay.setText("BMI: " + bmi + "\n" + "BMI Category: " + bmiCategory);
     }
 
     private void setupToggleButtons() {

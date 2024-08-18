@@ -10,13 +10,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" fillWidth="false" minHeight="400" minWidth="400" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mjfelecio.bmicalculator.BMICalculatorController">
 
-   <Label fx:id="BMIDisplay" alignment="CENTER" prefHeight="180.0" prefWidth="400.0" style="-fx-border-color: black;" text="Display">
+   <Label fx:id="BMIDisplay" alignment="CENTER" prefHeight="180.0" prefWidth="400.0" style="-fx-border-color: black;" text="Enter your Height and Weight">
       <VBox.margin>
          <Insets left="20.0" right="20.0" />
-      </VBox.margin></Label>
+      </VBox.margin>
+      <font>
+         <Font name="JetBrains Mono Medium" size="20.0" />
+      </font>
+   </Label>
 
    <GridPane hgap="10" vgap="10">
       <padding>
@@ -24,10 +29,10 @@
       </padding>
 
       <Label text="Height" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-      <TextField fx:id="heightField" alignment="CENTER" prefWidth="150.0" promptText="Height" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <TextField fx:id="heightField" alignment="CENTER" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
       <Label text="Weight" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      <TextField fx:id="weightField" alignment="CENTER" prefWidth="80.0" promptText="Weight" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="weightField" alignment="CENTER" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
       <VBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
          <RadioButton fx:id="metricUnit" mnemonicParsing="false" text="Metric Unit" toggleGroup="$unitGroup">
@@ -54,5 +59,5 @@
          <RowConstraints />
       </rowConstraints>
    </GridPane>
-   <Button onAction="#calculateBMI" mnemonicParsing="false" prefWidth="120.0" prefHeight="30" text="Calculate BMI" />
+   <Button mnemonicParsing="false" onAction="#calculateBMI" prefHeight="30" prefWidth="120.0" text="Calculate BMI" />
 </VBox>

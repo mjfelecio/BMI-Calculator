@@ -9,7 +9,10 @@ import java.util.function.UnaryOperator;
 
 public class BMICalculatorController {
 
-    BMI bmiCalculator;
+    private BMI bmiCalculator;
+    private String selectedUnit;
+    private double meters;
+    private double kilograms;
 
     @FXML
     private Label BMIDisplay;
@@ -24,19 +27,12 @@ public class BMICalculatorController {
     @FXML
     private RadioButton imperialUnit;
 
-    private String selectedUnit;
-    private double meters;
-    private double kilograms;
-
     public void initialize() {
         bmiCalculator = new BMI();
         setupToggleButtons();
         setupInputFilter(heightField);
         setupInputFilter(weightField);
-
-        // Sets metric as default unit
-        unitGroup.selectToggle(metricUnit);
-        selectedUnit = "Metric Unit";
+        setDefaultAsMetric();
     }
 
     @FXML
@@ -49,12 +45,6 @@ public class BMICalculatorController {
         updateBMIDisplay();
     }
 
-    private void updateBMIDisplay() {
-        String bmi = bmiCalculator.getBMI();
-        String bmiCategory = bmiCalculator.getBMICategory();
-        BMIDisplay.setText("BMI: " + bmi + "\n" + "BMI Category: " + bmiCategory);
-    }
-
     private void setupToggleButtons() {
         metricUnit.setToggleGroup(unitGroup);
         imperialUnit.setToggleGroup(unitGroup);
@@ -65,19 +55,6 @@ public class BMICalculatorController {
                 setUnit(unitUsed);
             }
         });
-    }
-
-    private void setUnit(String unit) {
-        if (unit.equals("Metric Unit")) {
-            heightField.setPromptText("cm");
-            weightField.setPromptText("kg");
-            selectedUnit = "Metric Unit";
-        }
-        else if (unit.equals("Imperial Unit")) {
-            heightField.setPromptText("in");
-            weightField.setPromptText("lbs");
-            selectedUnit = "Imperial Unit";
-        }
     }
 
     private void setupInputFilter(TextField textField) {
@@ -100,6 +77,24 @@ public class BMICalculatorController {
         textField.setTextFormatter(textFormatter);
     }
 
+    private void setUnit(String unit) {
+        if (unit.equals("Metric Unit")) {
+            heightField.setPromptText("cm");
+            weightField.setPromptText("kg");
+            selectedUnit = "Metric Unit";
+        }
+        else if (unit.equals("Imperial Unit")) {
+            heightField.setPromptText("in");
+            weightField.setPromptText("lbs");
+            selectedUnit = "Imperial Unit";
+        }
+    }
+
+    public void setDefaultAsMetric() {
+        unitGroup.selectToggle(metricUnit);
+        selectedUnit = "Metric Unit";
+    }
+
     private void convertInputToMeterAndKG() {
         double height = Double.parseDouble(heightField.getText());
         double weight = Double.parseDouble(weightField.getText());
@@ -115,5 +110,11 @@ public class BMICalculatorController {
             double pounds = weight;
             kilograms = pounds * 0.45359237;
         }
+    }
+
+    private void updateBMIDisplay() {
+        String bmi = bmiCalculator.getBMI();
+        String bmiCategory = bmiCalculator.getBMICategory();
+        BMIDisplay.setText("BMI: " + bmi + "\n" + "BMI Category: " + bmiCategory);
     }
 }
